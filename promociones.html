@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROSES 🌹 | Promociones</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>ROSES🌹</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="product.html">Productos</a>
+      <a href="contact.html">Contacto</a>
+      <a href="sale.html">Sale</a>
+      <a href="promociones.html" class="active">Promociones</a>
+    </nav>
+  </header>
+
+  <section class="promociones">
+    <h2>✨ Promociones Especiales ✨</h2>
+
+    <div class="promo-container">
+      <div class="promo-card">
+        <h3>💞 Llevá 2 productos y obtené 50% en el segundo</h3>
+        <p>Se aplica automáticamente al comprar dos productos iguales o distintos.</p>
+      </div>
+      <div class="promo-card">
+        <h3>🌸 3x2 en productos seleccionados</h3>
+        <p>Llevate tres prendas y pagá solo dos. La de menor valor es gratis.</p>
+      </div>
+      <div class="promo-card">
+        <h3>🎀 10% de descuento en compras superiores a $30.000</h3>
+        <p>Perfecto para tus compras grandes. Descuento automático.</p>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>🛍️ Calculá tu descuento</h3>
+
+      <form>
+        <label for="producto">Precio unitario del producto ($):</label>
+        <input type="number" id="producto" placeholder="Ej: 12000" required>
+
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" placeholder="Ej: 3" required>
+
+        <label for="promocion">Seleccioná la promoción:</label>
+        <select id="promocion">
+          <option value="ninguna">Sin promoción</option>
+          <option value="50segundo">50% en el segundo producto</option>
+          <option value="3x2">3x2 en productos</option>
+          <option value="10porciento">10% por compras mayores a $30.000</option>
+        </select>
+
+        <button type="button" onclick="calcularPromocion()">Calcular</button>
+      </form>
+
+      <div class="resultados" id="resultados">
+        <p>Total sin descuento: —</p>
+        <p>Descuento aplicado: —</p>
+        <p><strong>Total final: —</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 ROSES. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="promociones.js"></script>
+</body>
+</html>
