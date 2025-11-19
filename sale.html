@@ -155,7 +155,6 @@
       font-size:16px;
     }
 
-    /* small label */
     .label-sale {
       display:inline-block;
       background:var(--rose);
@@ -166,7 +165,6 @@
       margin-top:10px;
     }
 
-    /* responsive */
     @media (max-width:980px){
       .products-grid{ grid-template-columns: repeat(2, 1fr); }
       .sale-banner img{ height:360px; }
@@ -180,7 +178,9 @@
     }
   </style>
 </head>
+
 <body class="sale-body">
+
   <header>
     <h1>ROSES🌹</h1>
     <nav>
@@ -189,91 +189,98 @@
       <a href="contact.html">Contacto</a>
       <a href="promociones.html">Promociones</a>
       <a href="sale.html" class="sale">SALE</a>
+      <a href="about.html">Sobre Nosotros</a>
     </nav>
   </header>
 
-  <!-- Banner -->
-  <section class="sale-banner" aria-label="Sale banner">
-    <img src="img/banner.png" alt="Sale banner">
-    <div class="sale-text">
-      <h2> SALE 🌸</h2>
-      <p>Arriba de <strong>50% OFF</strong> items seleccionados — solo por tiempo limitado</p>
-      <a class="cta" href="#sale-products">COMPRA AHORA</a>
-    </div>
-  </section>
+  <main>   <!-- ⭐ AQUI SE AGREGA -->
 
-  <!-- Productos en oferta -->
-  <section id="sale-products" class="sale-products-section" aria-labelledby="sale-products-heading">
-    <h2 id="sale-products-heading">Sale Items</h2>
-    <p class="lead">Encontrá nuestras piezas favoritas con descuento — rápido que vuelan ✨</p>
+    <!-- Banner -->
+    <section class="sale-banner">
+      <img src="img/banner.png" alt="Sale banner">
+      <div class="sale-text">
+        <h2> SALE 🌸</h2>
+        <p>Arriba de <strong>50% OFF</strong> items seleccionados — solo por tiempo limitado</p>
+        <a class="cta" href="#sale-products">COMPRA AHORA</a>
+      </div>
+    </section>
 
-    <div class="products-grid">
-      <article class="product-card" aria-label="Etu V Neck Yellow - descuento">
-        <img src="img/producto1.png" alt="Etu V Neck Yellow">
-        <p>Etu V Neck Yellow</p>
-        <div class="prices">
-          <span class="old-price">$128.000</span>
-          <span class="sale-price">$64.000</span>
-        </div>
-        <span class="label-sale">-50%</span>
-      </article>
+    <!-- Productos -->
+    <section id="sale-products" class="sale-products-section">
+      <h2>Sale Items</h2>
+      <p class="lead">Encontrá nuestras piezas favoritas con descuento — rápido que vuelan ✨</p>
 
-      <article class="product-card" aria-label="Eye Punching Floral - descuento">
-        <img src="img/producto 4.png" alt="Eye Punching Floral">
-        <p>Eye Punching Floral</p>
-        <div class="prices">
-          <span class="old-price">$122.000</span>
-          <span class="sale-price">$61.000</span>
-        </div>
-        <span class="label-sale">-50%</span>
-      </article>
+      <div class="products-grid">
+        <article class="product-card">
+          <img src="img/producto1.png">
+          <p>Etu V Neck Yellow</p>
+          <div class="prices">
+            <span class="old-price">$128.000</span>
+            <span class="sale-price">$64.000</span>
+          </div>
+          <span class="label-sale">-50%</span>
+        </article>
 
-      <article class="product-card" aria-label="Floral Waffle Tee - descuento">
-        <img src="img/producto5.png" alt="Floral Waffle Tee">
-        <p>Floral Waffle Tee</p>
-        <div class="prices">
-          <span class="old-price">$127.000</span>
-          <span class="sale-price">$63.500</span>
-        </div>
-        <span class="label-sale">-50%</span>
-      </article>
+        <article class="product-card">
+          <img src="img/producto 4.png">
+          <p>Eye Punching Floral</p>
+          <div class="prices">
+            <span class="old-price">$122.000</span>
+            <span class="sale-price">$61.000</span>
+          </div>
+          <span class="label-sale">-50%</span>
+        </article>
 
-      <article class="product-card" aria-label="Snap Pure Blouse - descuento">
-        <img src="img/producto6.png" alt="Snap Pure Blouse">
-        <p>Snap Pure Blouse</p>
-        <div class="prices">
-          <span class="old-price">$123.000</span>
-          <span class="sale-price">$61.500</span>
-        </div>
-        <span class="label-sale">-50%</span>
-      </article>
+        <article class="product-card">
+          <img src="img/producto5.png">
+          <p>Floral Waffle Tee</p>
+          <div class="prices">
+            <span class="old-price">$127.000</span>
+            <span class="sale-price">$63.500</span>
+          </div>
+          <span class="label-sale">-50%</span>
+        </article>
 
-      <article class="product-card" aria-label="Wave Stripe Half - descuento">
-        <img src="img/producto3.png" alt="Wave Stripe Half">
-        <p>Wave Stripe Half</p>
-        <div class="prices">
-          <span class="old-price">$130.000</span>
-          <span class="sale-price">$65.000</span>
-        </div>
-        <span class="label-sale">-50%</span>
-      </article>
+        <article class="product-card">
+          <img src="img/producto6.png">
+          <p>Snap Pure Blouse</p>
+          <div class="prices">
+            <span class="old-price">$123.000</span>
+            <span class="sale-price">$61.500</span>
+          </div>
+          <span class="label-sale">-50%</span>
+        </article>
 
-      <article class="product-card" aria-label="Macaroon Dry Half - descuento">
-        <img src="img/producto2.png" alt="Macaroon Dry Half">
-        <p>Macaroon Dry Half</p>
-        <div class="prices">
-          <span class="old-price">$118.000</span>
-          <span class="sale-price">$59.000</span>
-        </div>
-        <span class="label-sale">-50%</span>
-      </article>
-    </div>
-  </section>
+        <article class="product-card">
+          <img src="img/producto3.png">
+          <p>Wave Stripe Half</p>
+          <div class="prices">
+            <span class="old-price">$130.000</span>
+            <span class="sale-price">$65.000</span>
+          </div>
+          <span class="label-sale">-50%</span>
+        </article>
 
-  <footer style="text-align:center;padding:18px 0;color:#555;">
+        <article class="product-card">
+          <img src="img/producto2.png">
+          <p>Macaroon Dry Half</p>
+          <div class="prices">
+            <span class="old-price">$118.000</span>
+            <span class="sale-price">$59.000</span>
+          </div>
+          <span class="label-sale">-50%</span>
+        </article>
+      </div>
+    </section>
+
+  </main> <!-- ⭐ CIERRE MAIN -->
+
+  <footer>
     <p>© 2025 ROSES. Todos los derechos reservados.</p>
   </footer>
+
 </body>
 </html>
+
 
 

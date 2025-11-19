@@ -290,10 +290,11 @@ footer {
   background-color: #000;
   color: #fff;
   text-align: center;
-  padding: 18px;
-  margin-top: 60px;
+  padding: 20px;
   font-size: 14px;
+  margin-top: auto;
 }
+
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 900px) {
@@ -517,4 +518,30 @@ form button:hover {
   .about-box h2::after {
     width: 60px;
   }
+}
+
+/* ===== FIX GLOBAL PARA QUE EL FOOTER SIEMPRE BAJE ✨ ===== */
+/* Hace que el footer quede abajo siempre */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* El contenido ocupa todo el espacio disponible */
+main {
+  flex: 1;
+}
+
+/* Footer normal */
+footer {
+  margin-top: auto;
+  padding: 20px;
+  text-align: center;
 }

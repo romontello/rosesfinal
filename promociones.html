@@ -6,6 +6,7 @@
   <title>ROSES 🌹 | Promociones</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header>
     <h1>ROSES🌹</h1>
@@ -15,9 +16,11 @@
       <a href="contact.html">Contacto</a>
       <a href="sale.html">Sale</a>
       <a href="promociones.html" class="active">Promociones</a>
+      <a href="about.html">Sobre Nosotros</a>
     </nav>
   </header>
 
+<main>
   <section class="promociones">
     <h2>✨ Promociones Especiales ✨</h2>
 
@@ -26,13 +29,15 @@
         <h3>💞 Llevá 2 productos y obtené 50% en el segundo</h3>
         <p>Se aplica automáticamente al comprar dos productos iguales o distintos.</p>
       </div>
+
       <div class="promo-card">
         <h3>🌸 3x2 en productos seleccionados</h3>
-        <p>Llevate tres prendas y pagá solo dos. La de menor valor es gratis.</p>
+        <p>Llevate tres prendas y pagá solo dos.</p>
       </div>
+
       <div class="promo-card">
         <h3>🎀 10% de descuento en compras superiores a $30.000</h3>
-        <p>Perfecto para tus compras grandes. Descuento automático.</p>
+        <p>Perfecto para compras grandes.</p>
       </div>
     </div>
 
@@ -40,18 +45,18 @@
       <h3>🛍️ Calculá tu descuento</h3>
 
       <form>
-        <label for="producto">Precio unitario del producto ($):</label>
-        <input type="number" id="producto" placeholder="Ej: 12000" required>
+        <label for="producto">Precio unitario ($):</label>
+        <input type="number" id="producto" min="1" oninput="validarPositivo(this)" required>
 
         <label for="cantidad">Cantidad:</label>
-        <input type="number" id="cantidad" placeholder="Ej: 3" required>
+        <input type="number" id="cantidad" min="1" oninput="validarPositivo(this)" required>
 
-        <label for="promocion">Seleccioná la promoción:</label>
+        <label for="promocion">Promoción:</label>
         <select id="promocion">
           <option value="ninguna">Sin promoción</option>
-          <option value="50segundo">50% en el segundo producto</option>
-          <option value="3x2">3x2 en productos</option>
-          <option value="10porciento">10% por compras mayores a $30.000</option>
+          <option value="50segundo">50% en el segundo</option>
+          <option value="3x2">3x2</option>
+          <option value="10porciento">10% +30.000</option>
         </select>
 
         <button type="button" onclick="calcularPromocion()">Calcular</button>
@@ -64,6 +69,7 @@
       </div>
     </div>
   </section>
+</main>
 
   <footer>
     <p>© 2025 ROSES. Todos los derechos reservados.</p>
@@ -72,3 +78,4 @@
   <script src="promociones.js"></script>
 </body>
 </html>
+
