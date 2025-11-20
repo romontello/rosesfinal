@@ -28,10 +28,15 @@ button:hover {
 /* ====== HEADER ====== */
 header {
   display: flex;
+  position:sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fdfafb;
   justify-content: space-between;
   align-items: center;
   padding: 18px 50px;
   border-bottom: 1px solid #ddd;
+ 
 }
 
 header h1 {
