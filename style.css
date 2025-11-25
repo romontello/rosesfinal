@@ -1,4 +1,3 @@
-/* ====== GENERAL ====== */
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -25,7 +24,6 @@ button:hover {
   background-color: #e63946;
 }
 
-/* ====== HEADER ====== */
 header {
   display: flex;
   position:sticky;
@@ -66,7 +64,6 @@ nav a.sale {
   font-weight: 600;
 }
 
-/* ====== HERO (HOME) ====== */
 .hero {
   position: relative;
   width: 100%;
@@ -90,7 +87,6 @@ nav a.sale {
   margin-bottom: 5px;
 }
 
-/* ====== SEASONS (HOME) ====== */
 .seasons {
   display: flex;
   justify-content: center;
@@ -114,7 +110,6 @@ nav a.sale {
   font-size: 18px;
 }
 
-/* ====== BEST SELLERS (HOME) ====== */
 .bestseller {
   text-align: center;
   padding: 60px 20px;
@@ -157,7 +152,6 @@ nav a.sale {
   color: #777;
 }
 
-/* ====== PRODUCTS PAGE ====== */
 .productos-page {
   text-align: center;
   padding: 60px 30px;
@@ -194,7 +188,6 @@ nav a.sale {
   margin-top: 20px;
 }
 
-/* ====== SALE PAGE ====== */
 .sale-section {
   text-align: center;
   background: linear-gradient(135deg, #ffe6eb, #fff);
@@ -223,7 +216,6 @@ nav a.sale {
   background-color: #000;
 }
 
-/* ====== CONTACT PAGE ====== */
 .contact {
   background-color: #ffeef3;
   padding: 60px 40px;
@@ -290,7 +282,6 @@ form button {
   font-weight: 500;
 }
 
-/* ====== FOOTER ====== */
 footer {
   background-color: #000;
   color: #fff;
@@ -301,7 +292,6 @@ footer {
 }
 
 
-/* ====== RESPONSIVE ====== */
 @media (max-width: 900px) {
   .products, .products-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -321,7 +311,6 @@ footer {
     align-items: center;
   }
 }
-/* ======== ESTILOS PARA PROMOCIONES ======== */
 
 .promociones {
   text-align: center;
@@ -408,23 +397,23 @@ form button:hover {
   text-align: left;
 }
 
-/* ===== TEMPORADA - FIX: centrado 3 en fila ===== */
+
 .temporada {
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;               /* centra el contenedor en la página */
+  margin: 0 auto;               
   display: flex;
-  justify-content: center;      /* centra las 3 columnas horizontalmente */
+  justify-content: center;     
   align-items: flex-start;
   gap: 32px;
   padding: 48px 20px;
   box-sizing: border-box;
   text-align: center;
-  flex-wrap: wrap;              /* permite que se ajuste en pantallas chicas */
+  flex-wrap: wrap;             
 }
 
 .temporada-item {
-  flex: 0 0 260px;              /* ancho fijo para que queden 3 en fila */
+  flex: 0 0 260px;             
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -449,7 +438,6 @@ form button:hover {
   letter-spacing: .6px;
 }
 
-/* Responsive: hasta 900px => 2 columnas; hasta 600px => 1 columna */
 @media (max-width: 900px) {
   .temporada-item { flex: 0 0 45%; } /* 2 en fila */
 }
@@ -461,7 +449,7 @@ form button:hover {
   .temporada-item { flex: 0 0 100%; } /* 1 en fila */
   .temporada-item img { width: 100%; max-width: 420px; }
 }
-/* ====== SOBRE NOSOTROS (ESTÉTICO) ====== */
+/* ====== SOBRE NOSOTROS  ====== */
 
 .about {
   padding: 90px 20px;
@@ -488,7 +476,6 @@ form button:hover {
   letter-spacing: 1px;
 }
 
-/* Línea aesthetic */
 .about-box h2::after {
   content: "";
   display: block;
@@ -509,7 +496,6 @@ form button:hover {
   font-weight: 400;
 }
 
-/* Más estético en pantallas pequeñas */
 @media (max-width: 700px) {
   .about-box {
     padding: 35px 25px;
@@ -525,8 +511,7 @@ form button:hover {
   }
 }
 
-/* ===== FIX GLOBAL PARA QUE EL FOOTER SIEMPRE BAJE ✨ ===== */
-/* Hace que el footer quede abajo siempre */
+
 html, body {
   height: 100%;
   margin: 0;
@@ -539,14 +524,13 @@ body {
   min-height: 100vh;
 }
 
-/* El contenido ocupa todo el espacio disponible */
 main {
   flex: 1;
 }
 
-/* Footer normal */
 footer {
   margin-top: auto;
   padding: 20px;
   text-align: center;
 }
+
