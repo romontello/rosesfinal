@@ -24,6 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const formatMoney = n => '$' + Number(n).toLocaleString('es-AR', { maximumFractionDigits: 0 });
 
+  // Modal elements (SINGLE modal)
+  const modal = document.getElementById("confirmModal");
+  const modalYes = document.getElementById("confirmYes");
+  const modalNo = document.getElementById("confirmNo");
+  let pendingDeleteId = null;
+
   // Render cart list
   function renderCart() {
     cartList.innerHTML = '';
@@ -55,8 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     cartList.appendChild(wrapper);
 
-    // Attach handlers
-    cartList.querySelectorAll('.qty-btn.inc').forEach(b => {
+    // Attach handlers for inc/dec/remove AFTER we create DOM
+    wrapper.querySelectorAll('.qty-btn.inc').forEach(b => {
       b.addEventListener('click', () => {
         const id = b.dataset.id;
         cart[id] = (cart[id] || 0) + 1;
@@ -64,7 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
         recompute();
       });
     });
-    cartList.querySelectorAll('.qty-btn.dec').forEach(b => {
+
+    wrapper.querySelectorAll('.qty-btn.dec').forEach(b => {
       b.addEventListener('click', () => {
         const id = b.dataset.id;
         cart[id] = Math.max(0, (cart[id] || 0) - 1);
@@ -73,15 +80,45 @@ document.addEventListener("DOMContentLoaded", () => {
         recompute();
       });
     });
-    cartList.querySelectorAll('.remove-btn').forEach(b => {
-      b.addEventListener('click', () => {
-        const id = b.dataset.id;
-        delete cart[id];
-        syncQtyInputs(id, 0);
-        recompute();
+
+    // IMPORTANT: remove opens modal and sets pendingDeleteId (no deletion yet)
+    wrapper.querySelectorAll('.remove-btn').forEach(b => {
+      b.addEventListener('click', (e) => {
+        pendingDeleteId = b.dataset.id;
+        openModal();
       });
     });
   }
+
+  // Modal open/close helpers
+  function openModal() {
+    if (!modal) return;
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+  }
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+  }
+
+  // Modal button handlers
+  modalYes.addEventListener('click', () => {
+    if (pendingDeleteId) {
+      delete cart[pendingDeleteId];
+      syncQtyInputs(pendingDeleteId, 0);
+      recompute();
+    }
+    pendingDeleteId = null;
+    closeModal();
+  });
+
+  modalNo.addEventListener('click', () => {
+    pendingDeleteId = null;
+    closeModal();
+  });
 
   // Keep the qty inputs in grid synced with cart
   function syncQtyInputs(productId, forcedValue) {
@@ -91,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     input.value = val;
   }
 
-  // Click + button on product card
+  // Add button in product card (+)
   document.querySelectorAll('.add-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const pid = btn.dataset.product;
@@ -102,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // When user edits qty in the card
+  // When user edits qty input in cards
   document.querySelectorAll('.qty-input').forEach(input => {
     input.addEventListener('input', () => {
       const pid = input.dataset.product;
@@ -117,17 +154,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Clear
   const clearBtn = document.getElementById('clearBtn');
-  clearBtn.addEventListener('click', () => {
-    Object.keys(cart).forEach(k => delete cart[k]);
-    document.querySelectorAll('.qty-input').forEach(i => i.value = 0);
-    renderCart();
-    recompute();
-  });
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      Object.keys(cart).forEach(k => delete cart[k]);
+      document.querySelectorAll('.qty-input').forEach(i => i.value = 0);
+      renderCart();
+      recompute();
+    });
+  }
 
   // Checkout demo
-  document.getElementById('checkoutBtn').addEventListener('click', () => {
-    alert('Simulación de checkout. Total a pagar: ' + finalTotalText.innerText);
-  });
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      alert('Simulación de checkout. Total a pagar: ' + finalTotalText.innerText);
+    });
+  }
 
   // Recompute totals & discounts
   function recompute() {
@@ -155,15 +197,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const subtotalAfterUnits = subtotal - unitsDiscountTotal;
 
     let tenPctDiscount = 0;
-    if (applyTenCheckbox.checked && subtotalAfterUnits > TEN_PCT_THRESHOLD) {
+    if (applyTenCheckbox && applyTenCheckbox.checked && subtotalAfterUnits > TEN_PCT_THRESHOLD) {
       tenPctDiscount = subtotalAfterUnits * 0.10;
     }
 
     const finalTotal = subtotalAfterUnits - tenPctDiscount;
     updateSummary(subtotal, unitsDiscountTotal, tenPctDiscount, finalTotal);
+    // renderCart at end to update UI (keeps event listeners reattached)
     renderCart();
   }
 
+  // Update summary UI
   function updateSummary(subtotal = 0, unitsDiscount = 0, tenPct = 0, final = 0) {
     subtotalText.textContent = formatMoney(Math.round(subtotal));
     unitsDiscountText.textContent = '-' + formatMoney(Math.round(unitsDiscount));
@@ -171,11 +215,29 @@ document.addEventListener("DOMContentLoaded", () => {
     finalTotalText.textContent = formatMoney(Math.round(final));
   }
 
-  applyTenCheckbox.addEventListener('change', recompute);
+  if (applyTenCheckbox) applyTenCheckbox.addEventListener('change', recompute);
 
   // Init
   renderCart();
   recompute();
+
+  // Close modal when clicking overlay (optional UX)
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      // click on overlay outside modal-content closes it (but doesn't delete)
+      pendingDeleteId = null;
+      closeModal();
+    }
+  });
+
+  // Accessibility: close modal on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('show')) {
+      pendingDeleteId = null;
+      closeModal();
+    }
+  });
 });
+
 
 
