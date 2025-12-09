@@ -1,81 +1,155 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ROSES 🌹 | Promociones</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <header>
-    <h1>ROSES🌹</h1>
-    <nav>
+
+  <header class="roses-header">
+    <div class="brand">ROSES <span>🌹</span></div>
+    <nav class="roses-nav">
       <a href="index.html">Inicio</a>
       <a href="product.html">Productos</a>
       <a href="contact.html">Contacto</a>
-      <a href="sale.html">Sale</a>
       <a href="promociones.html" class="active">Promociones</a>
+      <a href="sale.html" class="sale">SALE</a>
       <a href="about.html">Sobre Nosotros</a>
     </nav>
   </header>
 
-<main>
-  <section class="promociones">
-    <h2>✨ Promociones Especiales ✨</h2>
+  <main class="wrap">
+    <section class="promociones">
+      <main>
 
-    <div class="promo-container">
-      <div class="promo-card">
-        <h3>💞 Llevá 2 productos y obtené 50% en el segundo</h3>
-        <p>Se aplica automáticamente al comprar dos productos iguales o distintos.</p>
-      </div>
+  <!-- 🩷 BLOQUE DE EXPLICACIÓN DE PROMOS ARRIBA -->
+    <section class="promo-info-box">
+      <h2>🌹 Promociones Disponibles</h2>
+      <ul>
+        <li><strong>💞 50% OFF en el segundo producto:</strong> Aplicable al llevar 2 unidades. Se descuenta el de menor precio.</li>
+        <li><strong>🌸 Promo 3x2:</strong> Llevate 3 productos y pagás solo 2. El más económico queda gratis.</li>
+        <li><strong>🎀 10% OFF en compras mayores a $30.000:</strong> Se aplica automáticamente al superar ese monto.</li>
+      </ul>
+    </section>
 
-      <div class="promo-card">
-        <h3>🌸 3x2 en productos seleccionados</h3>
-        <p>Llevate tres prendas y pagá solo dos.</p>
-      </div>
 
-      <div class="promo-card">
-        <h3>🎀 10% de descuento en compras superiores a $30.000</h3>
-        <p>Perfecto para compras grandes.</p>
-      </div>
-    </div>
 
-    <div class="form-section">
-      <h3>🛍️ Calculá tu descuento</h3>
+      <!-- Layout: izquierda = grid productos (2 columnas x 3 filas), derecha = panel -->
+      <div class="content-grid">
 
-      <form>
-        <label for="producto">Precio unitario ($):</label>
-        <input type="number" id="producto" min="1" oninput="validarPositivo(this)" required>
+        <!-- IZQUIERDA: galería -->
+        <div class="left-col">
+          <h1 class="page-title">✨Promociones Especiales✨</h1>
+          
 
-        <label for="cantidad">Cantidad:</label>
-        <input type="number" id="cantidad" min="1" oninput="validarPositivo(this)" required>
+          <div class="productos-grid" id="productosGrid">
+            <!-- 6 tarjetas (asegurate que los src tengan la extensión correcta .webp) -->
+            <article class="producto-card" data-id="p1" data-price="65000">
+              <div class="img-wrap"><img src="img/img1promo.webp" alt="Top Denim"></div>
+              <h3 class="producto-nombre">Top Denim</h3>
+              <div class="producto-price">$65.000</div>
+              <div class="producto-controls">
+                <button class="add-btn" data-product="p1">+</button>
+                <input class="qty-input" data-product="p1" type="number" min="0" value="0" aria-label="cantidad Top Denim">
+              </div>
+            </article>
 
-        <label for="promocion">Promoción:</label>
-        <select id="promocion">
-          <option value="ninguna">Sin promoción</option>
-          <option value="50segundo">50% en el segundo</option>
-          <option value="3x2">3x2</option>
-          <option value="10porciento">10% +30.000</option>
-        </select>
+            <article class="producto-card" data-id="p2" data-price="50000">
+              <div class="img-wrap"><img src="img/img2promo.webp" alt="Falda Print"></div>
+              <h3 class="producto-nombre">Falda Print</h3>
+              <div class="producto-price">$50.000</div>
+              <div class="producto-controls">
+                <button class="add-btn" data-product="p2">+</button>
+                <input class="qty-input" data-product="p2" type="number" min="0" value="0" aria-label="cantidad Falda Print">
+              </div>
+            </article>
 
-        <button type="button" onclick="calcularPromocion()">Calcular</button>
-      </form>
+            <article class="producto-card" data-id="p3" data-price="69000">
+              <div class="img-wrap"><img src="img/img8promo.webp" alt="Blazer Zaya"></div>
+              <h3 class="producto-nombre">Pollera Zaya</h3>
+              <div class="producto-price">$69.000</div>
+              <div class="producto-controls">
+                <button class="add-btn" data-product="p3">+</button>
+                <input class="qty-input" data-product="p3" type="number" min="0" value="0" aria-label="cantidad Pollera Zaya">
+              </div>
+            </article>
 
-      <div class="resultados" id="resultados">
-        <p>Total sin descuento: —</p>
-        <p>Descuento aplicado: —</p>
-        <p><strong>Total final: —</strong></p>
-      </div>
-    </div>
-  </section>
-</main>
+            <article class="producto-card" data-id="p4" data-price="55000">
+              <div class="img-wrap"><img src="img/img4promo.webp" alt="Mini Zayaga"></div>
+              <h3 class="producto-nombre">Mini Zayaga</h3>
+              <div class="producto-price">$55.000</div>
+              <div class="producto-controls">
+                <button class="add-btn" data-product="p4">+</button>
+                <input class="qty-input" data-product="p4" type="number" min="0" value="0" aria-label="cantidad Mini Zayaga">
+              </div>
+            </article>
 
-  <footer>
+            <article class="producto-card" data-id="p5" data-price="70000">
+              <div class="img-wrap"><img src="img/img5promo.webp" alt="Vestido Redy"></div>
+              <h3 class="producto-nombre">Vestido Redy</h3>
+              <div class="producto-price">$70.000</div>
+              <div class="producto-controls">
+                <button class="add-btn" data-product="p5">+</button>
+                <input class="qty-input" data-product="p5" type="number" min="0" value="0" aria-label="cantidad Vestido Redy">
+              </div>
+            </article>
+
+            <article class="producto-card" data-id="p6" data-price="68000">
+              <div class="img-wrap"><img src="img/img6promo.webp" alt="Short Bandi"></div>
+              <h3 class="producto-nombre">Short Bandi</h3>
+              <div class="producto-price">$68.000</div>
+              <div class="producto-controls">
+                <button class="add-btn" data-product="p6">+</button>
+                <input class="qty-input" data-product="p6" type="number" min="0" value="0" aria-label="cantidad Short Bandi">
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- DERECHA: panel de carrito/resumen -->
+        <aside class="cart-panel" id="cartPanel">
+          <h2>Tu combo</h2>
+
+          <div class="cart-list" id="cartList">
+            <p class="empty-note">Aún no agregaste productos. Usa los botones o cambia cantidades.</p>
+          </div>
+
+          <div class="promo-controls">
+            <label for="apply10">
+              <input type="checkbox" id="apply10" checked>
+              Aplicar 10% extra si el subtotal > $30.000
+            </label>
+          </div>
+
+          <div class="summary" id="summaryBox" aria-live="polite">
+            <div class="row"><span>Subtotal:</span><span id="subtotalText">$0</span></div>
+            <div class="row"><span>Descuento por unidades:</span><span id="unitsDiscountText">-$0</span></div>
+            <div class="row"><span>Descuento 10%:</span><span id="tenPctText">-$0</span></div>
+            <div class="row total-row"><strong>Total final:</strong><strong id="finalTotalText">$0</strong></div>
+          </div>
+
+          <div class="cart-actions">
+            <button id="clearBtn">Vaciar combo</button>
+            <button id="checkoutBtn" class="primary">Finalizar</button>
+          </div>
+        </aside>
+
+      </div> <!-- end content-grid -->
+
+    </section>
+  </main>
+
+  <footer class="roses-footer">
     <p>© 2025 ROSES. Todos los derechos reservados.</p>
   </footer>
 
   <script src="promociones.js"></script>
 </body>
 </html>
+
+
+
 
